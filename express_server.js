@@ -6,15 +6,11 @@ app.use(bodyParser.urlencoded({extended: true})); // default port 8080
 
 app.set("view engine", "ejs")
 
-
-
 function generateRandomString() {
   let randomString = Math.random().toString(36).slice(-6);
   return randomString;
 }
-while (true) {
-console.log(generateRandomString());
-}
+
 
 
 var urlDatabase = {
@@ -23,10 +19,15 @@ var urlDatabase = {
 };
 
 app.post("/urls", (req, res) => {
-  console.log(req.body);  // Log the POST request body to the console
-  res.send("Ok");         // Respond with 'Ok' (we will replace this)
+  let shortURL = generateRandomString();
+  urlDatabase(shortURL) = req.body.longURL;
+  res.redirect('/urls/' + shortURL);
 });
 
+app.get("/u/:shortURL", (req, res) => {
+  const longURL = urlDatabase[req.params.shortURL]
+  res.redirect(longURL);
+});
 
 app.get("/urls/new", (req, res) => {
   res.render("urls_new");
