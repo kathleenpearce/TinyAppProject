@@ -1,15 +1,18 @@
 <% include ./partials/_header %>
 <body>
  <ul>
+  <% if (users){ %>
    <h2>My URLs</h2>
-
-   <% for (url in urls){ %>
+  <% for (url in urls){ %>
       <li><strong><%= url %> </strong> <a href="<%= urls[url] %>"> <%= urls[url] %> </a></li>
       <u><a href="/urls/<%= url %>"> Edit </a></u>
       <form method="POST" action="/urls/<%= url %>/delete">
       <button type="submit" class="btn btn-primary"> Delete </button>
      </li>
    </form>
+  <% } %>
+   <%} else {%>
+   <div></div>
    <% } %>
 
 
