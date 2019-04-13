@@ -6,10 +6,11 @@ TinyApp is a full stack web application built with Node and Express that allows 
 
 ### TinyApp NEW! Urls page for a logged in user
 
-![Alt text](https://github.com/kathleenpearce/TinyAppProject/blob/master/TInyApp%20Logged%20in%20User%20homepage.png)
+![Alt text](https://github.com/kathleenpearce/TinyAppProject/blob/master/TinyApp%20User%20logged%20in%20url%20display%20page.png)
 
-![Alt text](https://github.com/kathleenpearce/TinyAppProject/blob/master/TinyApp%20Create%20a%20TinyURL.png
-"TinyApp Homepage for a logged in user")
+### TinyApp Logged in users create shortURLS!
+![Alt text](https://github.com/kathleenpearce/TinyAppProject/blob/master/TinyApp%20Logged%20in%20create%20tinyURL.png)
 
-![Alt text](https://github.com/kathleenpearce/TinyAppProject/blob/master/TinyApp%20homepage.png
-"TinyApp Homepage!")
+
+### TinyApp Homepage
+![Alt text](https://github.com/kathleenpearce/TinyAppProject/blob/master/TinyApp%20Logged%20in%20create%20tinyURL.png)
