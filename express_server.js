@@ -3,6 +3,7 @@ const app = express();
 const PORT = 8080; // default port 8080
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 
@@ -17,12 +18,12 @@ const users = {
   "userRandomID": {
     id: "userRandomID",
     email: "user@example.com",
-    password: "purple-monkey-dinosaur"
+    password: "purple-monkey-dinosaur11"
   },
  "user2RandomID": {
     id: "user2RandomID",
     email: "user2@example.com",
-    password: "dishwasher-funk"
+    password: "dishwasher-funk11"
   }
 }
 
@@ -114,9 +115,11 @@ app.post("/urls/:shortURL", (req, res) => {
 
 app.post("/login", (req, res) =>{
   let userFound;
+    console.log(users)
   for (i in users){
-    if (users[i].password === req.body.password && users[i].email === req.body.email ){
+    if (bcrypt.compareSync(req.body.password, users[i].password) && users[i].email === req.body.email ){
       userFound = users[i].id;
+      console.log('test', userFound);
       res.cookie('user_id', userFound);
       res.redirect("/urls");
     }
@@ -141,14 +144,15 @@ app.get("/register", (req,res) =>{
 
 app.post("/register", (req,res) =>{
   for (i in users){
-    if (req.body.email !== users[i].email  && req.body.password){
-    let userID = generateRandomString();
-    users[userID] = {'Id': userID, 'email': req.body.email, 'password': req.body.password};
-    res.cookie('user_id', userID);
-  }else{
-    console.log("404 Error")
+    if (req.body.email === users[i].email  || !req.body.password){
+      res.send("Username/email already exists");
+      return;
+    }
   }
-}
+  let userID = generateRandomString();
+  let hashedPassword = bcrypt.hashSync(req.body.password, 10);
+  users[userID] = {'id': userID, 'email': req.body.email, 'password': hashedPassword};
+  res.cookie('user_id', userID);
   res.redirect("/urls");
 });
 
