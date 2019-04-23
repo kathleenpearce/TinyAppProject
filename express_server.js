@@ -1,4 +1,4 @@
-const express = require("express");
+ const express = require("express");
 const app = express();
 const PORT = 8080;
 const bodyParser = require("body-parser");
@@ -29,7 +29,7 @@ function urlsForUser(id) {
 
 
 app.get("/u/:shortURL", (req, res) => {
-  const longURL = urlDatabase[req.params.shortURL];
+  const longURL = urlDatabase[req.params.shortURL].longURL;
     res.redirect(longURL);
 });
 
